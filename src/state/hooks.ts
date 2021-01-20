@@ -8,7 +8,7 @@ import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
 } from './actions'
-import { State, Farm, Pool } from './types'
+import { State, Farm, Pool, Profile } from './types'
 
 const ZERO = new BigNumber(0)
 
@@ -90,4 +90,11 @@ export const usePriceCakeBusd = (): BigNumber => {
   const bnbPriceUSD = usePriceBnbBusd()
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
+}
+
+// Profile
+
+export const useProfile = () => {
+  const profile: Profile = useSelector((state: State) => state.profile.data)
+  return { profile }
 }
